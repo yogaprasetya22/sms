@@ -100,11 +100,9 @@ class spam:
             "x-ada-agency": "adtubeagency",
             "x-ada-campaign": "AdakamiCampaign",
             "x-ada-role": "1",
-            "x-ada-appversion": "1.7.0",
-            "x-ada-device": "",
+            "x-ada-appversion": "1.7.0",                                                                         "x-ada-device": "",
             "x-ada-model": "SM-G935FD",
-            "x-ada-os-ver": "7.1.1",
-            "x-ada-androidid": "a4341a2sa90a4d97",
+            "x-ada-os-ver": "7.1.1",                                                                             "x-ada-androidid": "a4341a2sa90a4d97",
             "x-ada-aid": "c7bbb23d-a220-4d43-9caf-153608f9bd39",
             "x-ada-afid": "1580054114839-7395423911531673296",
         }
@@ -186,8 +184,7 @@ class spam:
 
     def suplai(nom):
         hd = {
-            "Host": "api.sooplai.com",                                                                           
-            "accept": "application/json, text/plain, */*",
+            "Host": "api.sooplai.com",                                                                           "accept": "application/json, text/plain, */*",
             "User-Agent": ua.random,
             "Content-Type": "application/json",
             "origin": "https://www.sooplai.com",
@@ -636,15 +633,18 @@ ojk = open(file, "r")
 ojk.readline()
 for no in ojk:
     nom = no.replace('\n', '')
-    spam.icq(nom)
-    spam.adakami(nom)
-    spam.iuga(nom)
-    spam.fav(nom)
-    spam.kelaspintar(nom)
-    spam.alodokter(nom)
-    spam.redbus(nom)
-    spam.olx(nom)
-    spam.oyo(nom)
-    spam.rupa(nom)
-    print(nom + " ~> Sudah selesai diproses\n\n")
+    if len(nom) <= 10:
+        no = nom.replace(nom, '00000000000')
+        spam.oyo(no)
+    else:
+        spam.icq(nom)
+        spam.adakami(nom)
+        spam.iuga(nom)
+        spam.fav(nom)
+        spam.kelaspintar(nom)
+        spam.alodokter(nom)
+        spam.redbus(nom)
+        spam.olx(nom)
+        spam.rupa(nom)
+        print(nom + " ~> Sudah selesai diproses\n\n")
 ojk.close()
