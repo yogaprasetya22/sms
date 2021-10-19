@@ -1,4 +1,4 @@
-import re
+import time
 
 
 def panggil():
@@ -14,8 +14,8 @@ ojk.readline()
 for no in ojk:
     nom = no.replace('\n', '')
     if len(nom) <= 10:
-        no = nom.replace(nom, '00000000000')
+        no = nom.replace(nom, '89999999999')
         print(no+' mmk')
-        # print(nom)
-    else:
+    elif len(nom) >= 10:
         print(nom)
+

