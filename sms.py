@@ -340,7 +340,7 @@ class spam:
     def redbus(nom):
         for i in range(2):
             requests.get("https://m.redbus.id/api/getOtp?number=" +
-                               nom+"&cc=62&whatsAppOpted=true").text
+                         nom+"&cc=62&whatsAppOpted=true").text
 
     def olx(nom):
         head = {
