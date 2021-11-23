@@ -9,7 +9,7 @@ ua = UserAgent()
 
 
 def panggil():
-    strfile = input(c.lg+"Nama File: "+c.end)
+    strfile = input(c.lg+"Nama File: ")
     strfile = strfile + ".txt"
     return strfile
 
@@ -549,20 +549,44 @@ class spam:
         send = requests.post(url+nom, headers=ua, data=at)
 
 
-def sms():
-    file = panggil()
-    ojk = open(file, "r")
+def tmpl():
     try:
-        # tmpl(file)
+        file = panggil()
+        num = 0
+        ojk = open(file, "r")
+        for num, line in enumerate(ojk, 1):
+            num = [num]
+        print(
+            f"\n{c.lc}Jumlah yang ada di file {file} {c.lr}{str(num[0])}{c.lc} baris{c.lp} \n")
+        sms(file)
+    except AttributeError:
+        print(f"\n{c.lc}AttributeError error")
+    except ImportError:
+        print(f"\n{c.lc}AttributeError error")
+    except UnboundLocalError:
+        print(f"\n{c.lc}UnboundLocalError error")
+    except SystemError:
+        print(f"\n{c.lc}SystemError error")
+
+
+def sms(file):
+    try:
+        ojk = open(file, "r")
         on = 0
         for no in ojk:
             on += 1
             nom = no.replace('\n', '')
             if len(nom) <= 10:
-                no = nom.replace(nom, '89699991212')
-                spam.oyo(no)
-                spam.iuga(no)
+                spam.icq(nom)
+                spam.fav(nom)
+                spam.kelaspintar(nom)
+                spam.alodokter(nom)
+                spam.redbus(nom)
+                spam.rupa(nom)
+                print(f"{c.lb}0{nom} ~> Ini nomor yang ke {c.lr}{on}{c.lp}\n")
             elif len(nom) >= 10:
+                spam.oyo(nom)
+                spam.iuga(nom)
                 spam.icq(nom)
                 spam.fav(nom)
                 spam.kelaspintar(nom)
@@ -579,25 +603,8 @@ def sms():
         print(f"\n{c.lc}UnboundLocalError error")
     except SystemError:
         print(f"\n{c.lc}SystemError error")
+    except KeyboardInterrupt:
+        print(f"\n{c.lc}Sukses ngab")
 
 
-def tmpl(self, file):
-    try:
-        num = 0
-        ojk = open(file, "r")
-        for num, line in enumerate(ojk, 1):
-            num = [num]
-        print(
-            f"\n{c.lc}Jumlah yang ada di file {file} {c.lr}{str(num[0])}{c.lc} baris{c.lp} \n")
-    except AttributeError:
-        print(f"\n{c.lc}AttributeError error")
-    except ImportError:
-        print(f"\n{c.lc}AttributeError error")
-    except UnboundLocalError:
-        print(f"\n{c.lc}UnboundLocalError error")
-    except SystemError:
-        print(f"\n{c.lc}SystemError error")
-
-
-sms()
-# tmpl()
+tmpl()
